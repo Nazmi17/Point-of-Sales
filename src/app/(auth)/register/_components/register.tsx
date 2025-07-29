@@ -8,15 +8,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Eye, EyeOff } from "lucide-react";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { LoginForm, loginSchema } from "@/validations/auth-validation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { INITIAL_LOGIN_FORM } from "@/constants/auth-constant";
 
-export default function LoginComponent() {
+export default function RegisterComponent() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,11 +19,6 @@ export default function LoginComponent() {
   const handleGoogleSignIn = () => {
     console.log("tes");
   };
-
-  const form = useForm<LoginForm>({
-      resolver: zodResolver(loginSchema),
-      defaultValues: INITIAL_LOGIN_FORM,
-  });
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
@@ -56,21 +46,37 @@ export default function LoginComponent() {
           </div>
 
           <form className="space-y-4">
+            {/* Full name */}
+            <div className="space-y-2">
+              <Label
+                htmlFor="name"
+                className="text-sm text-gray-700 dark:text-gray-300"
+              >
+                Full name
+              </Label>
+              <Input
+                placeholder="Masukkan nama anda"
+                required
+                className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+              />
+            </div>
+
             {/* Email */}
             <div className="space-y-2">
               <Label
-                htmlFor="email"
+                htmlFor="password"
                 className="text-sm text-gray-700 dark:text-gray-300"
               >
                 Email
               </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Masukkan email anda"
-                required
-                className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
-              />
+              <div className="relative">
+                <Input
+                  id="email"
+                  placeholder="Masukkan email anda"
+                  required
+                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
             </div>
 
             {/* Password */}
@@ -87,7 +93,7 @@ export default function LoginComponent() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Masukkan password anda"
                   required
-                  className="h-10 sm:h-11 pr-10 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
                 <button
                   type="button"
@@ -103,40 +109,41 @@ export default function LoginComponent() {
               </div>
             </div>
 
-            {/* Remember Me & Forgot Password */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="remember"
-                  checked={rememberMe}
-                  onCheckedChange={(checked) => {
-                    if (checked === "indeterminate") {
-                      console.log("Checkbox is in an indeterminate state");
-                    } else {
-                      setRememberMe(checked);
-                    }
-                  }}
-                />
-                <Label
-                  htmlFor="remember"
-                  className="text-xs sm:text-sm font-normal text-gray-700 dark:text-gray-300"
-                >
-                  Ingat saya untuk 30 hari
-                </Label>
-              </div>
-              <button
-                type="button"
-                className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+            {/* Confirm Password */}
+            <div className="space-y-2">
+              <Label
+                htmlFor="password"
+                className="text-sm text-gray-700 dark:text-gray-300"
               >
-                Lupa password
-              </button>
+                Konfirmasi Password
+              </Label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Konfirmasi password anda"
+                  required
+                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                >
+                  {showPassword ? (
+                    <EyeOff size={16} className="sm:w-[18px] sm:h-[18px]" />
+                  ) : (
+                    <Eye size={16} className="sm:w-[18px] sm:h-[18px]" />
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Sign In */}
             <Button
               type="button" // Change to button to prevent form submission
               onClick={() => (window.location.href = "/dashboard")}
-              className="w-full h-10 sm:h-11 bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white text-sm sm:text-base"
+              className="w-full h-10 sm:h-11 bg-cyan-500 hover:bg-cyan-600 text-white text-sm sm:text-base"
               disabled={isLoading}
             >
               {isLoading ? "Signing in..." : "Sign in"}
@@ -146,7 +153,7 @@ export default function LoginComponent() {
             <Button
               type="button"
               variant="outline"
-              className="w-full h-10 sm:h-11 text-sm sm:text-base border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+              className="w-full h-10 sm:h-11 text-sm sm:text-base"
               onClick={handleGoogleSignIn}
             >
               <svg
@@ -170,17 +177,16 @@ export default function LoginComponent() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                 />
               </svg>
-              Sign in dengan Google
+              Register dengan Google
             </Button>
 
-            <div className="text-center text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Tidak punya akun?{" "}
+            <div className="text-center text-xs sm:text-sm text-gray-600">
+              Sudah punya akun?{" "}
               <Link
-                type="button"
-                href={"/register"}
-                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium underline"
+                href="/login"
+                className="text-blue-600 hover:text-blue-800 font-medium underline"
               >
-                Sign up secara gratis
+                Login secara gratis
               </Link>
             </div>
           </form>
