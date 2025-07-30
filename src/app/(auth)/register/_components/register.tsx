@@ -28,11 +28,11 @@ export default function RegisterComponent() {
           <div className="flex items-center space-x-2 mb-6 lg:mb-8">
             <div className="w-8 h-8 bg-black dark:bg-white rounded-full flex items-center justify-center">
               <span className="text-white dark:text-black font-bold text-sm">
-                W
+                NZ
               </span>
             </div>
             <span className="text-xl font-semibold text-gray-900 dark:text-white">
-              Warluk.
+              Putra.
             </span>
           </div>
 
@@ -57,7 +57,7 @@ export default function RegisterComponent() {
               <Input
                 placeholder="Masukkan nama anda"
                 required
-                className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
               />
             </div>
 
@@ -74,7 +74,7 @@ export default function RegisterComponent() {
                   id="email"
                   placeholder="Masukkan email anda"
                   required
-                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function RegisterComponent() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Masukkan password anda"
                   required
-                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
                 <button
                   type="button"
@@ -123,7 +123,7 @@ export default function RegisterComponent() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Konfirmasi password anda"
                   required
-                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-hgray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="h-10 sm:h-11 text-sm sm:text-base bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
                 <button
                   type="button"
