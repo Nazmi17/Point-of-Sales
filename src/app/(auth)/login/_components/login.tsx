@@ -9,12 +9,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Eye, EyeOff } from "lucide-react";
 
+
 import Image from "next/image";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { LoginForm, loginSchema } from "@/validations/auth-validation";
+import {
+  INITIAL_LOGIN_FORM,
+  INITIAL_STATE_LOGIN_FORM,
+} from "@/constants/auth-constant";
+import { LoginForm, loginSchemaForm } from "@/validations/auth-validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { INITIAL_LOGIN_FORM } from "@/constants/auth-constant";
+import { startTransition, useActionState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { login } from "../actions";
+import { Loader2 } from "lucide-react";
 import {
   Form,
   FormField,
@@ -24,8 +31,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { toast } from "sonner";
 
-export default function LoginComponent() {
+export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,25 +53,54 @@ export default function LoginComponent() {
   // };
 
   const form = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(loginSchemaForm),
     defaultValues: INITIAL_LOGIN_FORM,
   });
 
-  const onSubmit = form.handleSubmit(async (data) => {});
+  const [loginState, loginAction, isPendingLogin] = useActionState(
+    login,
+    INITIAL_STATE_LOGIN_FORM
+  );
 
+  const onSubmit = form.handleSubmit(async (data) => {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    startTransition(() => {
+      loginAction(formData);
+    });
+  });
+
+  useEffect(() => {
+    if (loginState?.status === "error") {
+      toast.error("Login Gagal", {
+        description: loginState.errors?._form?.[0],
+      });
+
+      startTransition(() => {
+        loginAction(null);
+      });
+    }
+  }, [loginState]);
+
+  console.log(loginState);
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Login Form */}
       <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-white dark:bg-gray-900">
         <div className="w-full max-w-md space-y-6">
           <div className="flex items-center space-x-2 mb-6 lg:mb-8">
-            <div className="w-8 h-8 bg-black dark:bg-white rounded-full flex items-center justify-center">
-              <span className="text-white dark:text-black font-bold text-sm">
-                NZ
-              </span>
-            </div>
+            <Image
+              src="/Logo.svg"
+              alt="Company Name"
+              width={60}
+              height={40}
+              priority
+            />
             <span className="text-xl font-semibold text-gray-900 dark:text-white">
-              Putra.
+              NZ Putra.
             </span>
           </div>
 
@@ -178,7 +215,11 @@ export default function LoginComponent() {
                 className="w-full h-10 sm:h-11 bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white text-sm sm:text-base"
                 disabled={isLoading}
               >
-                {isLoading ? "Signing in..." : "Sign in"}
+                {isPendingLogin ? (
+                  <Loader2 className="animate-spin" />
+                ) : (
+                  "Login"
+                )}
               </Button>
 
               {/* Google */}
