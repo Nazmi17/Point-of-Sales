@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 export const SIDEBAR_MENU_LIST = {
-  admin: [
+  superadmin: [
     {
       title: "Dashboard",
       url: "/admin",
@@ -15,12 +15,12 @@ export const SIDEBAR_MENU_LIST = {
     },
     {
       title: "Transaksi",
-      url: "/transaksi",
+      url: "/order",
       icon: Album,
     },
     {
       title: "Barang",
-      url: "/admin/barang",
+      url: "/admin/menu",
       icon: SquareMenu,
     },
     {
@@ -30,7 +30,7 @@ export const SIDEBAR_MENU_LIST = {
     },
     {
       title: "Karyawan",
-      url: "/admin/karyawan",
+      url: "/admin/user",
       icon: Users,
     },
   ],
