@@ -237,18 +237,15 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Gambar lauk */}
-      {/* Gambar lauk */}
-      {/* Gambar lauk */}
-      <div className="hidden lg:flex flex-1 relative bg-gradient-to-br from-blue-400 to-blue-600 dark:from-blue-600 dark:to-blue-800">
+      <div className="flex-1 relative bg-gradient-to-br from-blue-400 to-blue-600">
         <div className="absolute inset-0 flex items-center justify-center">
-          <Image
-            src="/tes.png"
-            alt="fish"
-            width={250}
-            height={250}
-            className="object-contain"
-          />
+          <div className="relative">
+            {/* You can replace this with your actual fish image */}
+            <div className="w-64 h-64 bg-blue-300 rounded-full opacity-20"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-white text-6xl">🐟</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

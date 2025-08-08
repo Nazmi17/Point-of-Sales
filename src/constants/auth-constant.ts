@@ -64,3 +64,15 @@ export const ROLE_LIST = [
   },
 ];
 
+export const AVAILABILITY_LIST = [
+  {
+    value: "true",
+    label: "Available",
+  },
+  {
+    value: "false",
+    label: "Not Available",
+  },
+];
+
+
