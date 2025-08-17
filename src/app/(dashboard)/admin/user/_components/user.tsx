@@ -86,7 +86,7 @@ export default function UserManagement() {
               label: (
                 <span className="flex item-center gap-2">
                   <Trash2 className="text-red-400" />
-                  Delete
+                  Hapus
                 </span>
               ),
               variant: "destructive",
@@ -120,7 +120,7 @@ export default function UserManagement() {
           />
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="outline">Create</Button>
+              <Button variant="outline">Buat user</Button>
             </DialogTrigger>
             <DialogCreateUser refetch={refetch} />
           </Dialog>

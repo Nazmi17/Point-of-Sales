@@ -56,22 +56,22 @@ export const ROLE_LIST = [
   },
   {
     value: "kitchen",
-    label: "Kitchen",
+    label: "Dapur",
   },
   {
     value: "cashier",
-    label: "Cashier",
+    label: "Kasir",
   },
 ];
 
 export const AVAILABILITY_LIST = [
   {
     value: "true",
-    label: "Available",
+    label: "Tersedia",
   },
   {
     value: "false",
-    label: "Not Available",
+    label: "Tidak Tersedia",
   },
 ];
 

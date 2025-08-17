@@ -11,14 +11,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
-import { AVAILABILITY_LIST } from "@/constants/auth-constant";
-import { CATEGORY_LIST } from "@/constants/menu-constant";
 import { Preview } from "@/types/general";
 import { Loader2 } from "lucide-react";
 import { FormEvent } from "react";
 import { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
-export default function FormMenu<T extends FieldValues>({
+export default function FormCustomer<T extends FieldValues>({
   form,
   onSubmit,
   isLoading,
@@ -48,47 +46,27 @@ export default function FormMenu<T extends FieldValues>({
               form={form}
               name={"name" as Path<T>}
               label="Name"
-              placeholder="Masukkan nama menu"
+              placeholder="Masukkan nama pelanggan"
             />
             <FormInput
               form={form}
-              name={"description" as Path<T>}
-              label="Description"
-              placeholder="Masukkan deskripsi menu"
-              type="textarea"
-            />
-            <FormSelect
-              form={form}
-              name={"category" as Path<T>}
-              label="Category"
-              selectItem={CATEGORY_LIST}
-            />
-            <FormInput
-              form={form}
-              name={"price" as Path<T>}
-              label="Price"
-              placeholder="Masukkan harga menu"
+              name={"telp" as Path<T>}
+              label="Nomor Telepon"
+              placeholder="Masukkan nomor telepon pelanggan"
               type="number"
             />
             <FormInput
               form={form}
-              name={"discount" as Path<T>}
-              label="Discount"
-              placeholder="Masukkan diskon menu (Jika tidak ada diskon masukkan '0')"
-              type="number"
+              name={"address" as Path<T>}
+              label="Alamat"
+              placeholder="Masukkan alamat pelanggan"
             />
             <FormImage
               form={form}
               name={"image_url" as Path<T>}
-              label="Image"
+              label="Gambar"
               preview={preview}
               setPreview={setPreview}
-            />
-            <FormSelect
-              form={form}
-              name={"is_available" as Path<T>}
-              label="Availability"
-              selectItem={AVAILABILITY_LIST}
             />
           </div>
           <DialogFooter>

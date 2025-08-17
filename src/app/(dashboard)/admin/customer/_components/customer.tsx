@@ -11,15 +11,16 @@ import { useQuery } from "@tanstack/react-query";
 import { Pencil, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import { Menu } from "@/validations/menu-validation";
+import { Customer } from "@/validations/customer-validation";
 import Image from "next/image";
 import { cn, convertIDR } from "@/lib/utils";
-import { HEADER_TABLE_MENU } from "@/constants/menu-constant";
-import DialogCreateMenu from "./dialog-create-menu";
-import DialogUpdateMenu from "./dialog-update-menu";
-import DialogDeleteMenu from "./dialog-delete-menu";
+import { HEADER_TABLE_CUSTOMER } from "@/constants/customer-constant";
+import DialogCreateCustomer from "./dialog-create-customer";
+import DialogUpdateCustomer from "./dialog-update-customer";
+import DialogDeleteCustomer from "./dialog-delete-customer";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export default function MenuManagement() {
+export default function CustomerManagement() {
   const supabase = createClient();
   const {
     currentPage,
@@ -30,28 +31,28 @@ export default function MenuManagement() {
     handleChangeSearch,
   } = useDataTable();
   const {
-    data: menus,
+    data: customers,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["menus", currentPage, currentLimit, currentSearch],
+    queryKey: ["customers", currentPage, currentLimit, currentSearch],
     queryFn: async () => {
       const query = supabase
-        .from("menus")
+        .from("customers")
         .select("*", { count: "exact" })
         .range((currentPage - 1) * currentLimit, currentPage * currentLimit - 1)
         .order("created_at");
 
       if (currentSearch) {
         query.or(
-          `name.ilike.%${currentSearch}%,category.ilike.%${currentSearch}%`
+          `name.ilike.%${currentSearch}%`
         );
       }
 
       const result = await query;
 
       if (result.error)
-        toast.error("Get Menu data failed", {
+        toast.error("Gagal mengambil data", {
           description: result.error.message,
         });
 
@@ -60,7 +61,7 @@ export default function MenuManagement() {
   });
 
   const [selectedAction, setSelectedAction] = useState<{
-    data: Menu;
+    data: Customer;
     type: "update" | "delete";
   } | null>(null);
 
@@ -69,36 +70,20 @@ export default function MenuManagement() {
   };
 
   const filteredData = useMemo(() => {
-    return (menus?.data || []).map((menu: Menu, index) => {
+    return (customers?.data || []).map((customer: Customer, index) => {
       return [
         currentLimit * (currentPage - 1) + index + 1,
         <div className="flex items-center gap-2">
-          <Image
-            src={menu.image_url as string}
-            alt={menu.name}
-            width={40}
-            height={40}
-            className="rounded"
-          />
-          {menu.name}
+          <Avatar className="h-8 w-8 rounded-lg">
+            <AvatarImage src={customer.image_url} alt={customer.name} />
+            <AvatarFallback className="rounded-lg">
+              {customer.name?.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
+          {customer.name}
         </div>,
-        menu.category,
-        <div>
-          <p>Base: {convertIDR(menu.price)}</p>
-          <p>Discount: {menu.discount}</p>
-          <p>
-            After Discount:{" "}
-            {convertIDR(menu.price - (menu.price * menu.discount) / 100)}
-          </p>
-        </div>,
-        <div
-          className={cn(
-            "px-2 py-1 rounded-full text-white w-fit",
-            menu.is_available ? "bg-green-600" : "bg-red-500"
-          )}
-        >
-          {menu.is_available ? "Available" : "Not Available"}
-        </div>,
+        customer.telp,
+        customer.address,
         <DropdownAction
           menu={[
             {
@@ -110,7 +95,7 @@ export default function MenuManagement() {
               ),
               action: () => {
                 setSelectedAction({
-                  data: menu,
+                  data: customer,
                   type: "update",
                 });
               },
@@ -125,7 +110,7 @@ export default function MenuManagement() {
               variant: "destructive",
               action: () => {
                 setSelectedAction({
-                  data: menu,
+                  data: customer,
                   type: "delete",
                 });
               },
@@ -134,13 +119,13 @@ export default function MenuManagement() {
         />,
       ];
     });
-  }, [menus]);
+  }, [customers]);
 
   const totalPages = useMemo(() => {
-    return menus && menus.count !== null
-      ? Math.ceil(menus.count / currentLimit)
+    return customers && customers.count !== null
+      ? Math.ceil(customers.count / currentLimit)
       : 0;
-  }, [menus]);
+  }, [customers]);
 
   return (
     <div className="w-full">
@@ -155,12 +140,12 @@ export default function MenuManagement() {
             <DialogTrigger asChild>
               <Button variant="outline">Buat user</Button>
             </DialogTrigger>
-            <DialogCreateMenu refetch={refetch} />
+            <DialogCreateCustomer refetch={refetch} />
           </Dialog>
         </div>
       </div>
       <DataTable
-        header={HEADER_TABLE_MENU}
+        header={HEADER_TABLE_CUSTOMER}
         data={filteredData}
         isLoading={isLoading}
         totalPages={totalPages}
@@ -169,13 +154,13 @@ export default function MenuManagement() {
         onChangePage={handleChangePage}
         onChangeLimit={handleChangeLimit}
       />
-      <DialogUpdateMenu
+      <DialogUpdateCustomer
         open={selectedAction !== null && selectedAction.type === "update"}
         refetch={refetch}
         currentData={selectedAction?.data}
         handleChangeAction={handleChangeAction}
       />
-      <DialogDeleteMenu
+      <DialogDeleteCustomer
         open={selectedAction !== null && selectedAction.type === "delete"}
         refetch={refetch}
         currentData={selectedAction?.data}

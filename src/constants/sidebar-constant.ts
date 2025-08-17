@@ -2,6 +2,7 @@ import {
   Album,
   Armchair,
   LayoutDashboard,
+  PersonStanding,
   SquareMenu,
   Users,
 } from "lucide-react";
@@ -24,9 +25,9 @@ export const SIDEBAR_MENU_LIST = {
       icon: SquareMenu,
     },
     {
-      title: "Table",
-      url: "/admin/table",
-      icon: Armchair,
+      title: "Pelanggan",
+      url: "/admin/customer",
+      icon: PersonStanding,
     },
     {
       title: "Karyawan",

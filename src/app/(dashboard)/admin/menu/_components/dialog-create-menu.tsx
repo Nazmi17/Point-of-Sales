@@ -32,13 +32,13 @@ export default function DialogCreateMenu({ refetch }: { refetch: () => void }) {
 
   useEffect(() => {
     if (createMenuState?.status === "error") {
-      toast.error("Create Menu Failed", {
+      toast.error("Buat Menu Gagal", {
         description: createMenuState.errors?._form?.[0],
       });
     }
 
     if (createMenuState?.status === "success") {
-      toast.success("Create Menu Success");
+      toast.success("Buat Menu Sukses");
       form.reset();
       setPreview(undefined);
       document.querySelector<HTMLButtonElement>('[data-state="open"]')?.click();
