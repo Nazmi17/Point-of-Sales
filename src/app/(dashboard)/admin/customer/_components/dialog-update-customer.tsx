@@ -66,7 +66,7 @@ export default function DialogUpdateCustomer({
     }
 
     if (updateCustomerState?.status === "success") {
-      toast.success("Update Menu Success");
+      toast.success("Update Pelanggan Berhasil");
       form.reset();
       handleChangeAction?.(false);
       refetch();

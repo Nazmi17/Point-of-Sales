@@ -130,7 +130,7 @@ export default function CustomerManagement() {
   return (
     <div className="w-full">
       <div className="flex flex-col lg:flex-row mb-4 gap-2 justify-between w-full">
-        <h1 className="text-2xl font-bold">Menu Management</h1>
+        <h1 className="text-2xl font-bold">Management Pelanggan</h1>
         <div className="flex gap-2">
           <Input
             placeholder="Cari menu berdasarkan nama atau kategori"

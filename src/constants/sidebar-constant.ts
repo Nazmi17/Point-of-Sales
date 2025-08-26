@@ -1,6 +1,5 @@
 import {
-  Album,
-  Armchair,
+  Calculator,
   LayoutDashboard,
   PersonStanding,
   SquareMenu,
@@ -16,8 +15,8 @@ export const SIDEBAR_MENU_LIST = {
     },
     {
       title: "Transaksi",
-      url: "/order",
-      icon: Album,
+      url: "/admin/order",
+      icon: Calculator,
     },
     {
       title: "Barang",

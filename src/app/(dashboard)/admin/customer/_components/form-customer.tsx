@@ -35,7 +35,7 @@ export default function FormCustomer<T extends FieldValues>({
     <DialogContent className="sm:max-w-[425px] max-h-[90vh]">
       <Form {...form}>
         <DialogHeader>
-          <DialogTitle>{type} Menu</DialogTitle>
+          <DialogTitle>{type} Pelanggan</DialogTitle>
           <DialogDescription>
             {type === "Create" ? "Add a new menu" : "Make changes menu here"}
           </DialogDescription>
