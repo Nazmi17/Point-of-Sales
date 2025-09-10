@@ -4,13 +4,12 @@ export const metadata = {
   title: "NZ Putra | Detail Order",
 };
 
-interface DetailOrderPageProps {
+type DetailOrderPageProps = {
   params: {
     id: string;
   };
-}
+};
 
 export default function DetailOrderPage({ params }: DetailOrderPageProps) {
-  const { id } = params;
-  return <DetailOrder id={id} />;
+  return <DetailOrder id={params.id} />;
 }
