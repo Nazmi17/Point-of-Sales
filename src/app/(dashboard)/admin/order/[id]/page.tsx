@@ -9,5 +9,6 @@ export default function DetailOrderPage({
 }: {
   params: { id: string };
 }) {
-  return <DetailOrder id={params.id} />;
+  const { id } = params;
+  return <DetailOrder id={id} />;
 }

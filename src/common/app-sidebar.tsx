@@ -44,7 +44,7 @@ export default function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <div className="font-semibold">
-                <div className="flex p-2 gap-2 items-center justify-center rounded-md">
+                <div className="flex gap-2 items-center justify-center rounded-md">
                   <Image
                     src="/Logo.svg"
                     alt="logo"

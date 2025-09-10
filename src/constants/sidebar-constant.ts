@@ -1,5 +1,7 @@
 import {
   Calculator,
+  ChartColumnDecreasing,
+  ChartColumnIncreasing,
   LayoutDashboard,
   PersonStanding,
   SquareMenu,
@@ -32,6 +34,16 @@ export const SIDEBAR_MENU_LIST = {
       title: "Karyawan",
       url: "/admin/user",
       icon: Users,
+    },
+    {
+      title: "Pemasukan",
+      url: "/admin/pemasukan",
+      icon: ChartColumnIncreasing,
+    },
+    {
+      title: "Pengeluaran",
+      url: "/admin/pengeluaran",
+      icon: ChartColumnDecreasing,
     },
   ],
   kasir: [],
