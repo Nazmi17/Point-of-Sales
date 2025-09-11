@@ -35,16 +35,16 @@ export const SIDEBAR_MENU_LIST = {
       url: "/admin/user",
       icon: Users,
     },
-    {
-      title: "Pemasukan",
-      url: "/admin/pemasukan",
-      icon: ChartColumnIncreasing,
-    },
-    {
-      title: "Pengeluaran",
-      url: "/admin/pengeluaran",
-      icon: ChartColumnDecreasing,
-    },
+    // {
+    //   title: "Pemasukan",
+    //   url: "/admin/pemasukan",
+    //   icon: ChartColumnIncreasing,
+    // },
+    // {
+    //   title: "Pengeluaran",
+    //   url: "/admin/pengeluaran",
+    //   icon: ChartColumnDecreasing,
+    // },
   ],
   kasir: [],
   gudang: [],

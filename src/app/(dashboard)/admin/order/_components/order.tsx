@@ -117,15 +117,15 @@ export default function OrderManagement() {
         </div>,
         <DropdownAction
           menu={[
-            {
-              label: (
-                <div className="flex items-center gap-2">
-                  <FileText size={16} />
-                  Detail
-                </div>
-              ),
-              action: () => router.push(`/admin/order/${order.order_id}`),
-            },
+            // {
+            //   label: (
+            //     <div className="flex items-center gap-2">
+            //       <FileText size={16} />
+            //       Detail
+            //     </div>
+            //   ),
+            //   action: () => router.push(`/admin/order/${order.order_id}`),
+            // },
             {
               label: (
                 <div className="flex items-center gap-2">
