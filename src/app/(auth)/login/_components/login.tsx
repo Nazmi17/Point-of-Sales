@@ -222,7 +222,7 @@ export default function Login() {
                 )}
               </Button>
 
-              <div className="text-center text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+              {/* <div className="text-center text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                 Tidak punya akun?{" "}
                 <Link
                   type="button"
@@ -231,7 +231,7 @@ export default function Login() {
                 >
                   Sign up secara gratis
                 </Link>
-              </div>
+              </div> */}
             </form>
           </Form>
         </div>
